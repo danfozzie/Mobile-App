@@ -60,6 +60,11 @@ public class maths extends AppCompatActivity {
             }
         });
 
+        customView myView= (customView) findViewById(R.id.customView);
+        myView.setCircleColour(Color.BLUE);
+        myView.setCircleTextSize(50);
+        myView.setCircleTextColour(Color.WHITE);
+
         findViewById(R.id.txt_maths_2).setOnLongClickListener(longListen);
         findViewById(R.id.txt_maths_5).setOnLongClickListener(longListen);
         findViewById(R.id.txt_maths_7).setOnLongClickListener(longListen);
@@ -297,29 +302,53 @@ public class maths extends AppCompatActivity {
         String txtA5 = txtout5.getText().toString();
 
         if (txtA1.equals("")) {
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.RED);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
             Toast.makeText(getApplicationContext(), "I mean, come on", Toast.LENGTH_SHORT).show();
         }
         else if (txtA1.equals("5") && txtA2.equals("*") && txtA3.equals("2") && txtA4.equals("+") && txtA5.equals("7")) {
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.GREEN);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
             AlarmService.mPlayer.stop();
             Intent intent = new Intent(this, settingAlarm.class);
             startActivity(intent);
         }
         else if (txtA1.equals("2") && txtA2.equals("*") && txtA3.equals("5") && txtA4.equals("+") && txtA5.equals("7")) {
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.GREEN);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
             AlarmService.mPlayer.stop();
             Intent intent = new Intent(this, settingAlarm.class);
             startActivity(intent);
         }
         else if (txtA1.equals("7") && txtA2.equals("+") && txtA3.equals("2") && txtA4.equals("*") && txtA5.equals("5")) {
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.GREEN);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
             AlarmService.mPlayer.stop();
             Intent intent = new Intent(this, settingAlarm.class);
             startActivity(intent);
         }
         else if (txtA1.equals("7") && txtA2.equals("+") && txtA3.equals("5") && txtA4.equals("*") && txtA5.equals("2")) {
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.GREEN);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
             AlarmService.mPlayer.stop();
             Intent intent = new Intent(this, settingAlarm.class);
             startActivity(intent);
         }
         else {
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.RED);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
             Toast.makeText(getApplicationContext(), "Incorrect answer, please try again", Toast.LENGTH_SHORT).show();
         }
     }

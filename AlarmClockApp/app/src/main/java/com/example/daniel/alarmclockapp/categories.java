@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import java.sql.Time;
 import java.util.Calendar;
+
+import static com.example.daniel.alarmclockapp.R.id.customView;
 
 public class categories extends AppCompatActivity{
     TextView textout;
@@ -47,6 +50,10 @@ public class categories extends AppCompatActivity{
                 startActivity(i);
             }
         });
+        customView myView= (customView) findViewById(R.id.customView);
+        myView.setCircleColour(Color.BLUE);
+        myView.setCircleTextSize(50);
+        myView.setCircleTextColour(Color.WHITE);
     }
 
    public void changeTime() {
@@ -79,12 +86,20 @@ public class categories extends AppCompatActivity{
                 && textout6.getText().equals("N")
                 && textout7.getText().equals("D")
                 ) {
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.GREEN);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
 
             AlarmService.mPlayer.stop();
             Intent intent = new Intent(this, settingAlarm.class);
             startActivity(intent);
 
         } else{
+            customView myView= (customView) findViewById(R.id.customView);
+            myView.setCircleColour(Color.RED);
+            myView.setCircleTextSize(50);
+            myView.setCircleTextColour(Color.WHITE);
             Toast.makeText(getApplicationContext(), "Incorrect",Toast.LENGTH_SHORT).show();
         }
     }

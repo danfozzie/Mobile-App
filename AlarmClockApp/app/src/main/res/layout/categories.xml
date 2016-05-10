@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -310,18 +311,6 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="67dp"
         android:layout_height="35dp"
-        android:text="@string/go"
-        android:id="@+id/go"
-        android:layout_alignRight="@+id/R"
-        android:layout_alignEnd="@+id/R"
-        android:layout_alignTop="@+id/L7"
-        android:onClick="go"
-        android:layout_alignBottom="@+id/L7" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="67dp"
-        android:layout_height="35dp"
         android:text="@string/clear"
         android:id="@+id/clear"
         android:onClick="clear"
@@ -356,5 +345,20 @@
         android:layout_centerHorizontal="true"
         android:padding="0dp" />
 
+    <com.example.daniel.alarmclockapp.customView
+        android:id="@+id/customView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        custom:circleText="GO"
+        custom:circleTextColor="@android:color/white"
+        custom:circleTextSize="50"
+        custom:circleColor="@android:color/holo_blue_dark"
+        android:onClick="go"
+        android:layout_above="@+id/G"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/L7"
+        android:layout_toEndOf="@+id/L7"
+        android:layout_alignTop="@+id/L7" />
 
 </RelativeLayout>
