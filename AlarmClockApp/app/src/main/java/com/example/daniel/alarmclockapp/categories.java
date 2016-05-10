@@ -2,22 +2,64 @@ package com.example.daniel.alarmclockapp;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateUtils;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.sql.Time;
+import java.util.Calendar;
 
 public class categories extends AppCompatActivity{
     TextView textout;
     String letter;
 
     @Override
+    public void onBackPressed() {
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categories);
+
+        Button snooze = (Button) findViewById(R.id.snooze);
+        assert snooze != null;
+        snooze.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlarmService.mPlayer.stop();
+                changeTime();
+
+                Toast.makeText(getApplicationContext(), "Alarm Snoozed. You've got 5 minutes. ", Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(Intent.ACTION_MAIN);
+                i.addCategory(Intent.CATEGORY_HOME);
+                startActivity(i);
+            }
+        });
     }
+
+   public void changeTime() {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getBroadcast(categories.this, 0, intent, 0);
+
+        long newTime = SystemClock.currentThreadTimeMillis() + 5000;
+
+        settingAlarm.alarmManager.set(AlarmManager.RTC, newTime, pendingIntent);
+    }
+
+
 
     public void go(View view) {
         letter = "";
@@ -37,7 +79,6 @@ public class categories extends AppCompatActivity{
                 && textout6.getText().equals("N")
                 && textout7.getText().equals("D")
                 ) {
-            Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
 
             AlarmService.mPlayer.stop();
             Intent intent = new Intent(this, settingAlarm.class);

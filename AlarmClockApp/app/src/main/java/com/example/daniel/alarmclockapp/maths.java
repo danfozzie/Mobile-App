@@ -1,12 +1,16 @@
 package com.example.daniel.alarmclockapp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
@@ -16,24 +20,45 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-/**
- * Created by Tino on 02/05/2016.
- */
 public class maths extends AppCompatActivity {
     TextView textout;
     String letter;
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    @Override
+    public void onBackPressed() {
+    }
 
+    public void changeTime() {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getBroadcast(maths.this, 0, intent, 0);
+
+        long newTime = SystemClock.currentThreadTimeMillis() + 5000;
+
+        settingAlarm.alarmManager.set(AlarmManager.RTC, newTime, pendingIntent);
+    }
 
     @Override
     //initial declaration of variables
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maths);
+
+        Button snooze = (Button) findViewById(R.id.snooze);
+        assert snooze != null;
+        snooze.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlarmService.mPlayer.stop();
+                changeTime();
+
+                Toast.makeText(getApplicationContext(), "Alarm Snoozed. You've got 5 minutes. ", Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(Intent.ACTION_MAIN);
+                i.addCategory(Intent.CATEGORY_HOME);
+                startActivity(i);
+            }
+        });
 
         findViewById(R.id.txt_maths_2).setOnLongClickListener(longListen);
         findViewById(R.id.txt_maths_5).setOnLongClickListener(longListen);
@@ -272,19 +297,30 @@ public class maths extends AppCompatActivity {
         String txtA5 = txtout5.getText().toString();
 
         if (txtA1.equals("")) {
-            Toast.makeText(getApplicationContext(), "Who are you trying to FOOL!!!", Toast.LENGTH_SHORT).show();
-            //Log.i("Result", "null");
-        } else if (txtA1.equals("5") && txtA2.equals("*") && txtA3.equals("2") && txtA4.equals("+") && txtA5.equals("7")) {
-            Log.i("Result", "Successful");
-        } else if (txtA1.equals("2") && txtA2.equals("*") && txtA3.equals("5") && txtA4.equals("+") && txtA5.equals("7")) {
-            Log.i("Result", "Successful");
-        } else if (txtA1.equals("7") && txtA2.equals("+") && txtA3.equals("2") && txtA4.equals("*") && txtA5.equals("5")) {
-            Log.i("Result", "Successful");
-        } else if (txtA1.equals("7") && txtA2.equals("+") && txtA3.equals("5") && txtA4.equals("*") && txtA5.equals("2")) {
-            Log.i("Result", "Successful");
-        } else {
-            Toast.makeText(getApplicationContext(), "WRONG answer, please try again", Toast.LENGTH_LONG).show();
-            Log.i("Result", "ERROR");
+            Toast.makeText(getApplicationContext(), "I mean, come on", Toast.LENGTH_SHORT).show();
+        }
+        else if (txtA1.equals("5") && txtA2.equals("*") && txtA3.equals("2") && txtA4.equals("+") && txtA5.equals("7")) {
+            AlarmService.mPlayer.stop();
+            Intent intent = new Intent(this, settingAlarm.class);
+            startActivity(intent);
+        }
+        else if (txtA1.equals("2") && txtA2.equals("*") && txtA3.equals("5") && txtA4.equals("+") && txtA5.equals("7")) {
+            AlarmService.mPlayer.stop();
+            Intent intent = new Intent(this, settingAlarm.class);
+            startActivity(intent);
+        }
+        else if (txtA1.equals("7") && txtA2.equals("+") && txtA3.equals("2") && txtA4.equals("*") && txtA5.equals("5")) {
+            AlarmService.mPlayer.stop();
+            Intent intent = new Intent(this, settingAlarm.class);
+            startActivity(intent);
+        }
+        else if (txtA1.equals("7") && txtA2.equals("+") && txtA3.equals("5") && txtA4.equals("*") && txtA5.equals("2")) {
+            AlarmService.mPlayer.stop();
+            Intent intent = new Intent(this, settingAlarm.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Incorrect answer, please try again", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -21,13 +21,12 @@ import java.util.List;
 
 public class settingAlarm extends AppCompatActivity {
 
-    AlarmManager alarmManager;
+    public static AlarmManager alarmManager;
     public static String selectedAlarm = "";
     public static String selectedTask = "";
     public static String time = "";
     public static String alarmTone = "";
     public static String task = "";
-    public static String formattedTime = "";
 
     @Override
     public void onStart() {
@@ -46,7 +45,7 @@ public class settingAlarm extends AppCompatActivity {
 
         // Spinner Drop down elements
         List<String> alarms = new ArrayList<String>();
-        alarms.add("Random Tone");
+        alarms.add("Random");
         alarms.add("Buzzer Alarm");
         alarms.add("Industrial Alarm");
         alarms.add("Police Siren");
@@ -65,6 +64,7 @@ public class settingAlarm extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
+                selectedAlarm = "Random";
             }
 
         });
@@ -75,7 +75,7 @@ public class settingAlarm extends AppCompatActivity {
 
         // Spinner Drop down elements
         List<String> tasks = new ArrayList<String>();
-        tasks.add("Random Task");
+        tasks.add("Random");
         tasks.add("Name the Flag");
         tasks.add("Maths Challenge");
         tasks.add("Shake Phone");

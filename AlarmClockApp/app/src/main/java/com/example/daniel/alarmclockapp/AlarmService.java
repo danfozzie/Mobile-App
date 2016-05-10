@@ -24,7 +24,7 @@ public class AlarmService extends IntentService{
 
     @Override
     public void onHandleIntent(Intent intent) {
-        sendNotification("Click me to turn off alarm");
+        sendNotification("Snooze/Dismiss Alarm");
     }
 
 
@@ -88,7 +88,7 @@ public class AlarmService extends IntentService{
         mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 8, 0);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 4, 0);
 
         mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mPlayer.setLooping(true);
