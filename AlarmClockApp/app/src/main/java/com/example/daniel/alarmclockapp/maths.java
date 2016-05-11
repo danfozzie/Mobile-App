@@ -23,7 +23,9 @@ import android.widget.Toast;
 
 public class maths extends AppCompatActivity {
     TextView textout;
+    TextView score;
     String letter;
+    int counter;
 
     @Override
     public void onBackPressed() {
@@ -44,6 +46,20 @@ public class maths extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maths);
+
+        final TextView score = (TextView) findViewById(R.id.textView3);
+        score.setText("Clicked: 0");
+        final customView btnCounter = (customView) findViewById(R.id.customView);
+        assert btnCounter != null;
+        btnCounter.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                counter++;
+                score.setText("Clicked: " + counter );
+                Log.i("Counter", "Works");
+            }
+        });
 
         Button snooze = (Button) findViewById(R.id.snooze);
         assert snooze != null;
@@ -313,6 +329,7 @@ public class maths extends AppCompatActivity {
         String txtA3 = txtout3.getText().toString();
         String txtA4 = txtout4.getText().toString();
         String txtA5 = txtout5.getText().toString();
+
 
         if (txtA1.equals("")) {
             customView myView= (customView) findViewById(R.id.customView);

@@ -24,6 +24,7 @@
         <activity android:name=".maths"></activity>
 
 
+
         <service
             android:name=".AlarmService"
             android:enabled="true" />
