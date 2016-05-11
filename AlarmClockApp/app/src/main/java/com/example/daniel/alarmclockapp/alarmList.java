@@ -16,14 +16,18 @@ public class alarmList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_list);
 
+
+
         Intent intent = getIntent();
         String message = "Alarm set for: " + intent.getStringExtra(settingAlarm.time);
-        String message2 = "Chosen alarm tone: " + intent.getStringExtra(settingAlarm.alarmTone);
-        String message3 = "Chosen task: " + intent.getStringExtra(settingAlarm.task);
+        String message2 = "Alarm Message: " + settingAlarm.sharedPref.getString("message", "");
+        String message3 = "Chosen alarm tone: " + settingAlarm.sharedPref.getString("alarm", "");
+        String message4 = "Chosen task: " + settingAlarm.sharedPref.getString("task", "");
 
         TextView textView = (TextView) findViewById(R.id.alarmSetText);
-        TextView textView2 = (TextView) findViewById(R.id.chosenAlarmText);
-        TextView textView3 = (TextView) findViewById(R.id.chosenTaskText);
+        TextView textView2 = (TextView) findViewById(R.id.userMessage);
+        TextView textView3 = (TextView) findViewById(R.id.chosenAlarmText);
+        TextView textView4 = (TextView) findViewById(R.id.chosenTaskText);
 
         assert textView != null;
         textView.setText(message);
@@ -36,6 +40,10 @@ public class alarmList extends AppCompatActivity {
         assert textView3 != null;
         textView3.setText(message3);
         textView3.setTextSize(24);
+
+        assert textView4 != null;
+        textView4.setText(message4);
+        textView4.setTextSize(24);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

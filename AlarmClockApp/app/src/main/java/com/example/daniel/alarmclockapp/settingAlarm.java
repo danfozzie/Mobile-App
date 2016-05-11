@@ -5,8 +5,10 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +33,8 @@ public class settingAlarm extends AppCompatActivity {
     public static String time = "";
     public static String alarmTone = "";
     public static String task = "";
+    public static SharedPreferences sharedPref = null;
+    private SharedPreferences.Editor editor = null;
 
     @Override
     public void onStart() {
@@ -41,6 +46,8 @@ public class settingAlarm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_set);
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        sharedPref = this.getSharedPreferences("Prefs", 0);
+        editor = sharedPref.edit();
 
         // Spinner element
         final Spinner spinner = (Spinner) findViewById(R.id.alarmSpinner);
@@ -62,11 +69,12 @@ public class settingAlarm extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 selectedAlarm = spinner.getSelectedItem().toString();
+                editor.putString("alarm", selectedAlarm);
+                editor.commit();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                selectedAlarm = "Random";
             }
 
         });
@@ -80,7 +88,6 @@ public class settingAlarm extends AppCompatActivity {
         tasks.add("Random");
         tasks.add("Name the Flag");
         tasks.add("Maths Challenge");
-        tasks.add("Shake Phone");
 
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tasks);
@@ -91,11 +98,12 @@ public class settingAlarm extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 selectedTask = spinner2.getSelectedItem().toString();
+                editor.putString("task", selectedTask);
+                editor.commit();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                selectedTask = "Random";
             }
 
         });
@@ -105,15 +113,24 @@ public class settingAlarm extends AppCompatActivity {
     public void customMessage(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final EditText newMsg = (EditText) findViewById(R.id.message_box);
-        final EditText edittext = new EditText(this);
+        final EditText edittext = new EditText (this);
 
         builder.setView(edittext)
                 .setMessage("Alarm Message")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        String userMsg = edittext.getText().toString();
-                        assert newMsg != null;
-                        newMsg.setText(userMsg);
+                        if(edittext.length() <= 25) {
+                            String userMsg = edittext.getText().toString();
+                            editor.putString("message", userMsg);
+                            editor.commit();
+
+                            assert newMsg != null;
+                            newMsg.setText(userMsg);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Message too long. Please reduce to 25 or fewer characters.", Toast.LENGTH_SHORT).show();
+
+                        }
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -162,15 +179,8 @@ public class settingAlarm extends AppCompatActivity {
 
         Intent intent = new Intent(this, alarmList.class);
 
-
         time = formattedTime;
         intent.putExtra(time, formattedTime);
-
-        alarmTone = selectedAlarm;
-        intent.putExtra(alarmTone, selectedAlarm);
-
-        task = selectedTask;
-        intent.putExtra(task, selectedTask);
 
         startActivity(intent);
     }

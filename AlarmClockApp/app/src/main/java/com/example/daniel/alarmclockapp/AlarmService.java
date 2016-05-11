@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v4.app.NotificationCompat;
@@ -24,18 +25,21 @@ public class AlarmService extends IntentService{
 
     @Override
     public void onHandleIntent(Intent intent) {
-        sendNotification("Snooze/Dismiss Alarm");
+        sendNotification(settingAlarm.sharedPref.getString("message", ""));
     }
-
-
 
     private void sendNotification(String msg) {
         NotificationManager alarmNotificationManager = (NotificationManager) this
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
+
+
+        String chosenTask = getResources().getString(R.string.chosenTask);
+        String chosenAlarm = getResources().getString(R.string.chosenAlarm);
+
         PendingIntent contentIntent;
 
-        switch (settingAlarm.selectedTask) {
+        switch (chosenTask) {
             case "Name the Flag":
                 contentIntent = PendingIntent.getActivity(this, 0,
                         new Intent(this, categories.class), 0);
@@ -59,7 +63,7 @@ public class AlarmService extends IntentService{
 
         int sound;
 
-        switch (settingAlarm.selectedAlarm) {
+        switch (chosenAlarm) {
             case "Buzzer Alarm":
                 sound = R.raw.alarm_buzzer;
                 break;

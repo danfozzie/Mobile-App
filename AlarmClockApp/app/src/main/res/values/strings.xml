@@ -38,5 +38,8 @@
     <string name="snooze">Snooze…</string>
     <string name="custom_message">Alarm Message: </string>
     <string name="message">Set message…</string>
+    <string name="defaultMsg">Wake up!</string>
+    <string name="chosenTask">Random</string>
+    <string name="chosenAlarm">Random</string>
 </resources>
 
