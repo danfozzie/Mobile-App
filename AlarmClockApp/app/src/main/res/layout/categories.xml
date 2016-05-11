@@ -105,6 +105,19 @@
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:id="@+id/search"
+        android:onClick="browser1"
+        android:background="@drawable/searchicon"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="4dp"
+        android:layout_below="@+id/L1"
+        android:layout_alignLeft="@+id/L1"
+        android:layout_alignBottom="@+id/backspace"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:id="@+id/K"
         android:layout_marginTop="48dp"
