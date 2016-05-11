@@ -14,6 +14,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,11 +66,11 @@ public class maths extends AppCompatActivity {
         myView.setCircleTextSize(50);
         myView.setCircleTextColour(Color.WHITE);
 
-        findViewById(R.id.txt_maths_2).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_5).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_7).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_times).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_plus).setOnLongClickListener(longListen);
+        findViewById(R.id.txt_maths_2).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_5).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_7).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_times).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_plus).setOnTouchListener(longListen);
         findViewById(R.id.txtA1).setOnDragListener(dragListen1);
         findViewById(R.id.txtA2).setOnDragListener(dragListen2);
         findViewById(R.id.txtA3).setOnDragListener(dragListen3);
@@ -131,7 +132,7 @@ public class maths extends AppCompatActivity {
         }
     }
     //setting up the drag & drop function
-    View.OnLongClickListener longListen = new View.OnLongClickListener() {
+  /*  View.OnLongClickListener longListen = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
             DragShadow dragShadow = new DragShadow(v);
@@ -139,7 +140,19 @@ public class maths extends AppCompatActivity {
             v.startDrag(data, dragShadow, v, 0);
             return false;
         }
+    };  */
+
+    View.OnTouchListener longListen = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            DragShadow dragShadow = new DragShadow(v);
+            ClipData data = ClipData.newPlainText("", "");
+            v.startDrag(data, dragShadow, v, 0);
+            return false;
+        }
     };
+
     // dragging of each individual TextView
     View.OnDragListener dragListen1 = new View.OnDragListener() {
         @Override
@@ -262,7 +275,7 @@ public class maths extends AppCompatActivity {
 
         public DragShadow(View view) {
             super(view);
-            geryBox = new ColorDrawable(Color.LTGRAY);
+            geryBox = new ColorDrawable(Color.GRAY);
         }
 
         /*public DragShadow() {
@@ -278,8 +291,8 @@ public class maths extends AppCompatActivity {
         @Override
         public void onProvideShadowMetrics(Point shadowSize, Point shadowTouchPoint) {
             View v = getView();
-            int height = 150;
-            int width = 150;
+            int height = 200;
+            int width = 200;
 
             geryBox.setBounds(0, 0, width, height);
             shadowSize.set(width, height);
