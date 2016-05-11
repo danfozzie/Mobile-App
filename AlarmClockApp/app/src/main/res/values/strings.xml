@@ -29,12 +29,14 @@
     <string name="txt_maths_2">2</string>
     <string name="txt_maths_plus">+</string>
     <string name="txt_maths_7">7</string>
-    <string name="txt_maths_title">Drag and Drop to solve the problem....</string>
+    <string name="txt_maths_title">Drag and Drop to solve the problem…</string>
     <string name="txt_maths_ans">= 17</string>
     <string name="btn_maths_go">Turn Off Alarm</string>
     <string name="btn_maths_clear">Clear</string>
     <string name="btn_maths_back1">Back1</string>
     <string name="txt_maths_info">*BODMAS applies</string>
-    <string name="snooze">Snooze...</string>
+    <string name="snooze">Snooze…</string>
+    <string name="custom_message">Alarm Message: </string>
+    <string name="message">Set message…</string>
 </resources>
 

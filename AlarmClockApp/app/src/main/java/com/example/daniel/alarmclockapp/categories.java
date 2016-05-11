@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -66,7 +67,10 @@ public class categories extends AppCompatActivity{
         settingAlarm.alarmManager.set(AlarmManager.RTC, newTime, pendingIntent);
     }
 
-
+    public void browser1(View view) {
+        Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        startActivity(browserIntent);
+    }
 
     public void go(View view) {
         letter = "";

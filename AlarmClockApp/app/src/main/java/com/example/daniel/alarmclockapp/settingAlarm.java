@@ -2,15 +2,18 @@ package com.example.daniel.alarmclockapp;
 
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
@@ -41,7 +44,6 @@ public class settingAlarm extends AppCompatActivity {
 
         // Spinner element
         final Spinner spinner = (Spinner) findViewById(R.id.alarmSpinner);
-
 
         // Spinner Drop down elements
         List<String> alarms = new ArrayList<String>();
@@ -81,7 +83,7 @@ public class settingAlarm extends AppCompatActivity {
         tasks.add("Shake Phone");
 
 
-        ArrayAdapter <String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tasks);
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tasks);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(dataAdapter2);
 
@@ -99,6 +101,30 @@ public class settingAlarm extends AppCompatActivity {
         });
 
     }
+
+    public void customMessage(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final EditText newMsg = (EditText) findViewById(R.id.message_box);
+        final EditText edittext = new EditText(this);
+
+        builder.setView(edittext)
+                .setMessage("Alarm Message")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        String userMsg = edittext.getText().toString();
+                        assert newMsg != null;
+                        newMsg.setText(userMsg);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        builder.show();
+    }
+
 
     //Response to button
     @TargetApi(Build.VERSION_CODES.M)
