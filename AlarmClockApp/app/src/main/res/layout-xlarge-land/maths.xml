@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/txt_maths_title"
+        android:id="@+id/btnTitle"
+        android:textAlignment="center"
+        android:textColor="@color/background_material_dark"
+        android:textSize="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_maths_7"
+        android:id="@+id/txt_maths_7"
+        android:textSize="@dimen/maths_BtnNums"
+        android:layout_alignTop="@+id/txt_maths_times"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_maths_2"
+        android:id="@+id/txt_maths_2"
+        android:textSize="@dimen/maths_BtnNums"
+        android:layout_above="@+id/txt_maths_plus"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_maths_plus"
+        android:id="@+id/txt_maths_plus"
+        android:textSize="@dimen/maths_BtnNums"
+        android:layout_alignTop="@+id/txt_maths_5"
+        android:layout_toLeftOf="@+id/txt_maths_25"
+        android:layout_toStartOf="@+id/txt_maths_25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_maths_times"
+        android:id="@+id/txt_maths_times"
+        android:textSize="@dimen/maths_BtnNums"
+        android:layout_below="@+id/btnTitle"
+        android:layout_toLeftOf="@+id/txt_maths_25"
+        android:layout_toStartOf="@+id/txt_maths_25"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_maths_5"
+        android:id="@+id/txt_maths_5"
+        android:textSize="@dimen/maths_BtnNums"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/customView"
+        android:layout_alignStart="@+id/customView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txt_maths_25"
+        android:textSize="50dp"
+        android:text="@string/txt_maths_ans"
+        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/btn_maths_back1"
+        android:layout_toRightOf="@+id/txtA5"
+
+         />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtA1"
+        android:background="@drawable/border"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:layout_alignBottom="@+id/txt_maths_25"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtA2"
+        android:background="@drawable/border"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:layout_alignTop="@+id/txtA1"
+        android:layout_toRightOf="@+id/txtA1"
+        android:layout_toEndOf="@+id/txtA1" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtA3"
+        android:background="@drawable/border"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:layout_alignTop="@+id/txtA2"
+        android:layout_toRightOf="@+id/txtA2"
+        android:layout_toEndOf="@+id/txtA2" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtA4"
+        android:background="@drawable/border"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:layout_alignTop="@+id/txtA3"
+        android:layout_toRightOf="@+id/txtA3"
+        android:layout_toEndOf="@+id/txtA3" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtA5"
+        android:background="@drawable/border"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:layout_alignTop="@+id/txtA4"
+        android:layout_toRightOf="@+id/txtA4"
+        android:layout_toEndOf="@+id/txtA4" />
+
+
+
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_maths_clear"
+        android:id="@+id/btn_maths_clear"
+        android:onClick="clearBoxes"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="70dp"
+        android:textSize="15dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_maths_back1"
+        android:id="@+id/btn_maths_back1"
+        android:layout_alignTop="@+id/btn_maths_clear"
+        android:layout_toRightOf="@id/btn_maths_clear"
+        android:layout_marginLeft="150dp"
+        android:textSize="15dp"
+        android:onClick="back1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/txt_maths_info"
+        android:id="@+id/textView"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@+id/txtA3"
+        android:layout_alignLeft="@+id/txtA1"
+        android:layout_alignStart="@+id/txtA1"
+        android:layout_marginTop="6dp"
+        />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/snooze"
+        android:id="@+id/snooze"
+        android:textSize="12sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="0dp" />
+
+    <com.example.daniel.alarmclockapp.customView
+        android:id="@+id/customView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        custom:circleText="GO"
+        custom:circleTextColor="@android:color/white"
+        custom:circleTextSize="50"
+        custom:circleColor="@android:color/holo_blue_dark"
+        android:onClick="check_ans"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
