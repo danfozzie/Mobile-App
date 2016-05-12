@@ -31,9 +31,10 @@ public class maths extends AppCompatActivity {
     //long start, stop;
     String letter;
     int counter;
-    public ArrayList myArrayList = new ArrayList();
+
+/*    public ArrayList myArrayList = new ArrayList();
     private DbHelper DbHelper;
-    private SQLiteDatabase db;
+    private SQLiteDatabase db;  */
 
     public void changeTime() {
         Intent intent = new Intent(this, AlarmReceiver.class);
@@ -51,10 +52,13 @@ public class maths extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maths);
 
-        DbHelper = new DbHelper(getApplicationContext(),DbHelper.DB_NAME,null,DbHelper.DB_VERSION);
-        db = DbHelper.getWritableDatabase();
+/*      DbHelper = new DbHelper(getApplicationContext(),DbHelper.DB_NAME,null,DbHelper.DB_VERSION);
+        db = DbHelper.getWritableDatabase();  */
 
-        final TextView score = (TextView) findViewById(R.id.textView3);
+
+//Creating a counter as part of the  SQL Database
+
+/*        final TextView score = (TextView) findViewById(R.id.textView3);
         score.setText("Clicked: 0");
         final customView btnCounter = (customView) findViewById(R.id.customView);
         assert btnCounter != null;
@@ -66,7 +70,7 @@ public class maths extends AppCompatActivity {
                 score.setText("Clicked: " + counter );
                 Log.i("Counter", "Works");
             }
-        });
+        });  */
 
         Button snooze = (Button) findViewById(R.id.snooze);
         assert snooze != null;
@@ -103,63 +107,6 @@ public class maths extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        myArrayList.clear();
-/*
-        WeatherDBHelper dbHelper = new WeatherDBHelper(getApplicationContext(),WeatherDBHelper.DB_NAME,null,WeatherDBHelper.DB_VERSION);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-*/
-        String[] columns = {
-                "ID"
-        };
-// A cursor is your primary interface to the query results.
-        Cursor cursor = db.query(
-                "SCORE_TABLE", // Table to Query
-                columns,
-                null, // Columns for the "where" clause
-                null, // Values for the "where" clause
-                null, // columns to group by
-                null, // columns to filter by row groups
-                null // sort order
-        );
-// If possible, move to the first row of the query results.
-        if (cursor.moveToFirst()) {
-// Get the value in each column by finding the appropriate column index.
-            do {
-                int dayweatherIndex = cursor.getColumnIndex("SCORE_TABLE");
-                String dayweather = cursor.getString(dayweatherIndex);
-                myArrayList.add(dayweather);
-            }while(cursor.moveToNext());
-        } else {
-// That's weird, it works on MY machine...
-            myArrayList.add("No values returned :(");
-        }
-
-
-        //db.close();
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //WeatherDBHelper dbHelper = new WeatherDBHelper(getApplicationContext(),WeatherDBHelper.DB_NAME,null,WeatherDBHelper.DB_VERSION);
-        //SQLiteDatabase db = DBHelper.getWritableDatabase();
-
-        DbHelper.clearTable("SCORE_TABLE");
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        for(int i=0;i<myArrayList.size();i++) {
-            values.put("ID", myArrayList.get(i).toString());
-            db.insert("SCORE_TABLE", null, values);
-        }
-
-        //db.close();
-    }
 
     // method used to clear the text boxes
     public void clearBoxes(View view) {
@@ -213,7 +160,7 @@ public class maths extends AppCompatActivity {
             textout5.setText(letter);
         }
     }
-    //setting up the drag & drop function
+    //setting up the drag & drop function - with Long Click
   /*  View.OnLongClickListener longListen = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
@@ -224,6 +171,7 @@ public class maths extends AppCompatActivity {
         }
     };  */
 
+    //setting up the drag & drop function - with instant Click
     View.OnTouchListener longListen = new View.OnTouchListener() {
 
         @Override
@@ -350,6 +298,8 @@ public class maths extends AppCompatActivity {
             return true;
         }
     };
+
+
 
     // creating the shadow for the drag (user interface)
     private class DragShadow extends View.DragShadowBuilder {
