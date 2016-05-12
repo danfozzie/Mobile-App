@@ -34,8 +34,8 @@ public class AlarmService extends IntentService{
 
 
 
-        String chosenTask = getResources().getString(R.string.chosenTask);
-        String chosenAlarm = getResources().getString(R.string.chosenAlarm);
+        String chosenTask = settingAlarm.sharedPref.getString("task", "");
+        String chosenAlarm = settingAlarm.sharedPref.getString("alarm", "");
 
         PendingIntent contentIntent;
 
