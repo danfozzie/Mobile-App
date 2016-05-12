@@ -17,31 +17,26 @@
         tools:context=".settingAlarm">
 
         <LinearLayout
+            android:orientation="horizontal"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:layout_width="0px"
-            android:layout_height="0px"/>
-
-        <TimePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/timePicker"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="0px"
+            android:id="@+id/linearLayout" />
 
         <EditText
             android:id="@+id/message_box"
-            android:layout_width="190dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:hint="@string/message"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/timePicker"
             android:onClick="customMessage"
-            android:layout_marginTop="38dp"
-            android:layout_alignParentRight="true"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:layout_below="@+id/customMessage"
+            android:layout_toRightOf="@+id/timePicker"
+            android:layout_toEndOf="@+id/timePicker"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,21 +44,20 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/custom_message"
             android:id="@+id/customMessage"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/timePicker"
-            android:layout_marginTop="50dp"
-            android:layout_alignParentLeft="true" />
+            android:layout_below="@+id/linearLayout"
+            android:layout_toRightOf="@+id/timePicker"
+            android:layout_toEndOf="@+id/timePicker" />
 
         <Spinner
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:id="@+id/alarmSpinner"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/message_box"
-            android:layout_marginTop="35dp"
             android:spinnerMode="dropdown"
             android:gravity="end"
-            android:layout_alignParentRight="true" />
+            android:layout_below="@id/toneText"
+            android:layout_toRightOf="@+id/timePicker"
+            android:layout_toEndOf="@+id/timePicker"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,21 +65,20 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/alarm_tone"
             android:id="@+id/toneText"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/customMessage"
-            android:layout_marginTop="40dp"
-            android:layout_alignParentLeft="true" />
+            android:layout_below="@id/message_box"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/timePicker"
+            android:layout_toEndOf="@+id/timePicker" />
 
         <Spinner
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:id="@+id/taskSpinner"
-            android:layout_alignParentEnd="true"
             android:layout_below="@id/alarmSpinner"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:spinnerMode="dropdown"
-            android:gravity="end"
-            android:layout_alignParentRight="true" />
+            android:layout_toRightOf="@+id/timePicker"
+            android:layout_toEndOf="@+id/timePicker" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,10 +86,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/task_select"
             android:id="@+id/taskText"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/toneText"
-            android:layout_marginTop="40dp"
-            android:layout_alignParentLeft="true" />
+            android:layout_below="@id/alarmSpinner"
+            android:layout_toRightOf="@+id/timePicker"
+            android:layout_toEndOf="@+id/timePicker" />
 
         <Button
             android:layout_width="190dp"
@@ -106,7 +98,15 @@
             android:id="@+id/button"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/taskSpinner"
-            android:layout_marginTop="20dp" />
+            android:layout_centerInParent="true" />
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timePicker"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
