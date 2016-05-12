@@ -18,9 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".alarmList" />
-        <activity android:name=".categories" />
-        <activity android:name=".maths" />
+
+        <activity android:name=".alarmList"></activity>
+        <activity android:name=".categories"></activity>
+        <activity android:name=".maths"></activity>
+
+
 
         <service
             android:name=".AlarmService"

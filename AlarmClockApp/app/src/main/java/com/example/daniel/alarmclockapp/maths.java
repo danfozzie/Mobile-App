@@ -3,7 +3,10 @@ package com.example.daniel.alarmclockapp;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ClipData;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -14,19 +17,23 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class maths extends AppCompatActivity {
-    TextView textout;
+    TextView textout, score, showresults;
+    //long start, stop;
     String letter;
-
-    @Override
-    public void onBackPressed() {
-    }
+    int counter;
+    public ArrayList myArrayList = new ArrayList();
+    private DbHelper DbHelper;
+    private SQLiteDatabase db;
 
     public void changeTime() {
         Intent intent = new Intent(this, AlarmReceiver.class);
@@ -43,6 +50,23 @@ public class maths extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maths);
+
+        DbHelper = new DbHelper(getApplicationContext(),DbHelper.DB_NAME,null,DbHelper.DB_VERSION);
+        db = DbHelper.getWritableDatabase();
+
+        final TextView score = (TextView) findViewById(R.id.textView3);
+        score.setText("Clicked: 0");
+        final customView btnCounter = (customView) findViewById(R.id.customView);
+        assert btnCounter != null;
+        btnCounter.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                counter++;
+                score.setText("Clicked: " + counter );
+                Log.i("Counter", "Works");
+            }
+        });
 
         Button snooze = (Button) findViewById(R.id.snooze);
         assert snooze != null;
@@ -65,11 +89,11 @@ public class maths extends AppCompatActivity {
         myView.setCircleTextSize(50);
         myView.setCircleTextColour(Color.WHITE);
 
-        findViewById(R.id.txt_maths_2).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_5).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_7).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_times).setOnLongClickListener(longListen);
-        findViewById(R.id.txt_maths_plus).setOnLongClickListener(longListen);
+        findViewById(R.id.txt_maths_2).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_5).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_7).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_times).setOnTouchListener(longListen);
+        findViewById(R.id.txt_maths_plus).setOnTouchListener(longListen);
         findViewById(R.id.txtA1).setOnDragListener(dragListen1);
         findViewById(R.id.txtA2).setOnDragListener(dragListen2);
         findViewById(R.id.txtA3).setOnDragListener(dragListen3);
@@ -78,6 +102,65 @@ public class maths extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        myArrayList.clear();
+/*
+        WeatherDBHelper dbHelper = new WeatherDBHelper(getApplicationContext(),WeatherDBHelper.DB_NAME,null,WeatherDBHelper.DB_VERSION);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+*/
+        String[] columns = {
+                "ID"
+        };
+// A cursor is your primary interface to the query results.
+        Cursor cursor = db.query(
+                "SCORE_TABLE", // Table to Query
+                columns,
+                null, // Columns for the "where" clause
+                null, // Values for the "where" clause
+                null, // columns to group by
+                null, // columns to filter by row groups
+                null // sort order
+        );
+// If possible, move to the first row of the query results.
+        if (cursor.moveToFirst()) {
+// Get the value in each column by finding the appropriate column index.
+            do {
+                int dayweatherIndex = cursor.getColumnIndex("SCORE_TABLE");
+                String dayweather = cursor.getString(dayweatherIndex);
+                myArrayList.add(dayweather);
+            }while(cursor.moveToNext());
+        } else {
+// That's weird, it works on MY machine...
+            myArrayList.add("No values returned :(");
+        }
+
+
+        //db.close();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //WeatherDBHelper dbHelper = new WeatherDBHelper(getApplicationContext(),WeatherDBHelper.DB_NAME,null,WeatherDBHelper.DB_VERSION);
+        //SQLiteDatabase db = DBHelper.getWritableDatabase();
+
+        DbHelper.clearTable("SCORE_TABLE");
+
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        for(int i=0;i<myArrayList.size();i++) {
+            values.put("ID", myArrayList.get(i).toString());
+            db.insert("SCORE_TABLE", null, values);
+        }
+
+        //db.close();
+    }
+
     // method used to clear the text boxes
     public void clearBoxes(View view) {
         letter = "";
@@ -131,7 +214,7 @@ public class maths extends AppCompatActivity {
         }
     }
     //setting up the drag & drop function
-    View.OnLongClickListener longListen = new View.OnLongClickListener() {
+  /*  View.OnLongClickListener longListen = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
             DragShadow dragShadow = new DragShadow(v);
@@ -139,7 +222,19 @@ public class maths extends AppCompatActivity {
             v.startDrag(data, dragShadow, v, 0);
             return false;
         }
+    };  */
+
+    View.OnTouchListener longListen = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            DragShadow dragShadow = new DragShadow(v);
+            ClipData data = ClipData.newPlainText("", "");
+            v.startDrag(data, dragShadow, v, 0);
+            return false;
+        }
     };
+
     // dragging of each individual TextView
     View.OnDragListener dragListen1 = new View.OnDragListener() {
         @Override
@@ -255,6 +350,7 @@ public class maths extends AppCompatActivity {
             return true;
         }
     };
+
     // creating the shadow for the drag (user interface)
     private class DragShadow extends View.DragShadowBuilder {
         ColorDrawable geryBox;
@@ -262,7 +358,7 @@ public class maths extends AppCompatActivity {
 
         public DragShadow(View view) {
             super(view);
-            geryBox = new ColorDrawable(Color.LTGRAY);
+            geryBox = new ColorDrawable(Color.GRAY);
         }
 
         /*public DragShadow() {
@@ -278,8 +374,8 @@ public class maths extends AppCompatActivity {
         @Override
         public void onProvideShadowMetrics(Point shadowSize, Point shadowTouchPoint) {
             View v = getView();
-            int height = 150;
-            int width = 150;
+            int height = 200;
+            int width = 200;
 
             geryBox.setBounds(0, 0, width, height);
             shadowSize.set(width, height);
@@ -300,6 +396,7 @@ public class maths extends AppCompatActivity {
         String txtA3 = txtout3.getText().toString();
         String txtA4 = txtout4.getText().toString();
         String txtA5 = txtout5.getText().toString();
+
 
         if (txtA1.equals("")) {
             customView myView= (customView) findViewById(R.id.customView);

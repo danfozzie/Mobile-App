@@ -26,9 +26,8 @@
         android:id="@+id/txt_maths_7"
         android:textSize="@dimen/maths_BtnNums"
         android:layout_alignTop="@+id/txt_maths_times"
-        android:layout_toRightOf="@+id/btn_maths_go"
-        android:layout_toEndOf="@+id/btn_maths_go"
-        android:layout_marginTop="15dp" />
+        android:layout_toLeftOf="@+id/txt_maths_25"
+        android:layout_toStartOf="@+id/txt_maths_25" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,8 +36,11 @@
         android:text="@string/txt_maths_2"
         android:id="@+id/txt_maths_2"
         android:textSize="@dimen/maths_BtnNums"
-        android:layout_above="@+id/txt_maths_plus"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/txt_maths_plus"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="43dp"
+        android:layout_marginEnd="43dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,9 +49,9 @@
         android:text="@string/txt_maths_plus"
         android:id="@+id/txt_maths_plus"
         android:textSize="@dimen/maths_BtnNums"
-        android:layout_alignTop="@+id/txt_maths_5"
-        android:layout_toLeftOf="@+id/txt_maths_25"
-        android:layout_toStartOf="@+id/txt_maths_25" />
+        android:layout_below="@+id/txt_maths_7"
+        android:layout_toRightOf="@+id/txtA3"
+        android:layout_toEndOf="@+id/txtA3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,10 +60,10 @@
         android:text="@string/txt_maths_times"
         android:id="@+id/txt_maths_times"
         android:textSize="@dimen/maths_BtnNums"
+        android:layout_marginTop="24dp"
         android:layout_below="@+id/btnTitle"
-        android:layout_toLeftOf="@+id/txt_maths_5"
-        android:layout_toStartOf="@+id/txt_maths_5"
-        android:layout_marginTop="32dp" />
+        android:layout_toRightOf="@+id/btn_maths_clear"
+        android:layout_toEndOf="@+id/btn_maths_clear" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,9 +72,9 @@
         android:text="@string/txt_maths_5"
         android:id="@+id/txt_maths_5"
         android:textSize="@dimen/maths_BtnNums"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/btn_maths_go"
-        android:layout_alignStart="@+id/btn_maths_go" />
+        android:layout_below="@+id/txt_maths_plus"
+        android:layout_alignLeft="@+id/txt_maths_times"
+        android:layout_alignStart="@+id/txt_maths_times" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -151,29 +153,16 @@
         android:layout_toEndOf="@+id/txtA1" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_maths_go"
-        android:id="@+id/btn_maths_go"
-        android:textSize="20dp"
-        android:layout_alignTop="@+id/btn_maths_clear"
-        android:layout_centerHorizontal="true"
-        android:onClick="check_ans" />
-
-    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_maths_clear"
         android:id="@+id/btn_maths_clear"
         android:onClick="clearBoxes"
-        android:layout_marginBottom="17dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/btn_maths_go"
-        android:layout_toLeftOf="@+id/btn_maths_go"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:layout_below="@+id/txt_maths_25"
+        android:layout_toLeftOf="@+id/btn_maths_back1"
+        android:layout_toStartOf="@+id/btn_maths_back1" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -181,13 +170,12 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_maths_back1"
         android:id="@+id/btn_maths_back1"
-        android:layout_alignTop="@+id/btn_maths_go"
-        android:layout_alignLeft="@+id/txt_maths_7"
-        android:layout_alignStart="@+id/txt_maths_7"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:textSize="15dp"
-        android:onClick="back1" />
+        android:onClick="back1"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/txtA4"
+        android:layout_toStartOf="@+id/txtA4"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -223,11 +211,18 @@
         custom:circleTextSize="50"
         custom:circleColor="@android:color/holo_blue_dark"
         android:onClick="check_ans"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/txt_maths_7"
-        android:layout_alignEnd="@+id/txt_maths_7"
-        android:layout_alignLeft="@+id/txtA3"
-        android:layout_alignStart="@+id/txtA3"
-        android:layout_below="@+id/textView" />
+        android:contextClickable="false"
+        android:layout_below="@+id/txtA5"
+        android:layout_toRightOf="@+id/txtA5"
+        android:layout_toEndOf="@+id/txtA5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView3"
+        android:layout_alignTop="@+id/txt_maths_plus"
+        android:layout_alignLeft="@+id/btn_maths_clear"
+        android:layout_alignStart="@+id/btn_maths_clear" />
 
 </RelativeLayout>
