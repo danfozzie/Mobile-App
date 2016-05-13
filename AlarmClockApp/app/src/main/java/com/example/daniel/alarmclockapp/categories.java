@@ -68,7 +68,7 @@ public class categories extends AppCompatActivity{
     }
 
     public void browser1(View view) {
-        Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.photius.com/flags/alphabetic_list.html"));
         startActivity(browserIntent);
     }
 

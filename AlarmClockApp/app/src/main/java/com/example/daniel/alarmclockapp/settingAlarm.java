@@ -3,9 +3,7 @@ package com.example.daniel.alarmclockapp;
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -177,7 +175,7 @@ public class settingAlarm extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(settingAlarm.this, 0, myIntent, 0);
         alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
 
-        Intent intent = new Intent(this, alarmList.class);
+        Intent intent = new Intent(this, alarmInfo.class);
 
         time = formattedTime;
         intent.putExtra(time, formattedTime);
