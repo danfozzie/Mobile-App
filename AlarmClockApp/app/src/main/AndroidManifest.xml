@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".alarmList"></activity>
+        <activity android:name=".alarmInfo"></activity>
         <activity android:name=".categories"></activity>
         <activity android:name=".maths"></activity>
 

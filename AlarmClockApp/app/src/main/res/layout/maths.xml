@@ -209,7 +209,7 @@
         custom:circleText="GO"
         custom:circleTextColor="@android:color/white"
         custom:circleTextSize="50"
-        custom:circleColor="@android:color/holo_blue_dark"
+        custom:circleColor="#951D99"
         android:onClick="check_ans"
         android:contextClickable="false"
         android:layout_below="@+id/txtA5"
