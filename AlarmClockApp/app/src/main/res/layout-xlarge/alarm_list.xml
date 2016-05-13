@@ -30,13 +30,15 @@
         android:layout_marginTop="30dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="74dp"
         android:text="@string/edit_alarm"
         android:id="@+id/change_alarm"
-        android:onClick="changeAlarm"/>
+        android:onClick="changeAlarm"
+        android:background="#951D99"
+        android:textColor="@android:color/white"/>
 
 </RelativeLayout>

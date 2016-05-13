@@ -103,10 +103,7 @@
         android:layout_above="@+id/K"
         android:layout_toRightOf="@+id/L6"
         android:layout_toEndOf="@+id/L6"
-
         />
-
-
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -155,7 +152,6 @@
         android:background="@drawable/searchicon"
         android:layout_below="@+id/N"
         android:layout_toLeftOf="@id/customView"
-
         android:layout_marginTop="80dp"
         android:layout_marginRight="200dp"
         />
@@ -247,8 +243,6 @@
         android:text="@string/l"
         android:onClick="click"/>
 
-
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="55dp"
@@ -278,7 +272,6 @@
         android:layout_toRightOf="@+id/H"
         android:layout_toEndOf="@+id/H"
         android:onClick="click"/>
-
 
     <Button
         style="?android:attr/buttonStyleSmall"

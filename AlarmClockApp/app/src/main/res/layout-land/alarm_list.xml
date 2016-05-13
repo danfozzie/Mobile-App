@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="74dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/edit_alarm"
         android:id="@+id/change_alarm"
         android:onClick="changeAlarm"
